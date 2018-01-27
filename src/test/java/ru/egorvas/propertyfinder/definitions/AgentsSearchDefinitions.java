@@ -8,6 +8,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import ru.egorvas.propertyfinder.general.SystemConstants;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -41,7 +42,7 @@ public class AgentsSearchDefinitions {
     $x("//span[.='Nationality']").click();
     $$(By.cssSelector("li")).find(Condition.text("India")).click();
 
-    numberOfAgentsElement.waitUntil(Condition.not(Condition.text(numberOfAgentsText)),5000);
+    numberOfAgentsElement.waitUntil(Condition.not(Condition.text(numberOfAgentsText)), SystemConstants.TIMEOUT);
     Assert.assertTrue(Integer.parseInt(numberOfAgentsText.split(" ")[0])>
             Integer.parseInt(numberOfAgentsElement.text().split(" ")[0]));
   }

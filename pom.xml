@@ -15,6 +15,8 @@
     <selenide.version>4.9</selenide.version>
     <allure.cucumber.version>2.0-BETA21</allure.cucumber.version>
     <allure.results.directory>${project.build.directory}/site/allure-results</allure.results.directory>
+    <browser></browser>
+    <timeout></timeout>
   </properties>
 
   <dependencies>
@@ -48,10 +50,15 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
         <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
             -Dcucumber.options="--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
           </argLine>
+          <systemPropertyVariables>
+            <browser>${browser}</browser>
+            <timeout>${timeout}</timeout>
+          </systemPropertyVariables>
           <systemProperties>
             <property>
               <name>allure.results.directory</name>
